@@ -22,4 +22,5 @@ form(html: { multipart: true }) do |f|
     end
    f.actions
 end
+
 end

@@ -1,8 +1,26 @@
 <h2>Name: <%= @movie.name %></h2><br>
 <h2>Desc: <%= @movie.description %></h2><br/>
 
+<!-- show video-->
 
 <% @movie.movies.each do |hehe| %>
-  <%= video_tag hehe.url, :size => "480x480", :controls => true %>
-
+  <%= video_tag hehe.url, :size => "480x480	", :controls => true %>
 <% end %>
+
+<!-- create new comment -->
+
+<%= form_for :comment, url:comments_path do |f| %>
+<%= render 'comments/form', f:f%>
+<%= f.hidden_field :object_type, value: @movie.class.name%>
+<%= f.hidden_field :object_id, value: @movie.id%>
+<%= f.submit "Create" %>
+<% end %>
+
+
+<!-- show comments -->
+
+<% Comment.where(object: @movie).each do |comment| %>
+<br>User:
+<%= comment.user.email.split('@').first %><br>:
+<%=comment.body%><hr>
+<%end%> 
