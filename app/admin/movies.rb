@@ -12,5 +12,14 @@ ActiveAdmin.register Movie do
 #   permitted
 # end
 
-permit_params :name, :description
+permit_params :name, :description, movies: []
+
+form(html: { multipart: true }) do |f|
+    f.inputs do
+      f.input :name
+      f.input :description
+      f.file_field :movies, multiple: true
+    end
+   f.actions
+end
 end

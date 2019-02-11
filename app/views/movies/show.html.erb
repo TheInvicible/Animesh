@@ -1,2 +1,8 @@
 <h2>Name: <%= @movie.name %></h2><br>
 <h2>Desc: <%= @movie.description %></h2><br/>
+
+
+<% @movie.movies.each do |hehe| %>
+  <%= video_tag hehe.url, :size => "480x480", :controls => true %>
+
+<% end %>
